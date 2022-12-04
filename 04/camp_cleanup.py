@@ -3,6 +3,7 @@ def main():
         data = [x.strip().split(',') for x in f.readlines()]
     one(data)
     two(data)
+
     
 def one(data):
     total = 0
@@ -26,7 +27,6 @@ def two(data):
             total += 1
     
     print(f"Your total for puzzle two: {total}")
-
 
 
 def int_elf_assignments(elf_number, pair):
