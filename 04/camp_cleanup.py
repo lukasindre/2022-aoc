@@ -4,7 +4,7 @@ def main():
     one(data)
     two(data)
 
-    
+
 def one(data):
     total = 0
     for pair in data:
@@ -12,9 +12,9 @@ def one(data):
         second = int_elf_assignments(1, pair)
         if set(range(first[0][0], first[0][1] + 1)).issubset(set(range(second[0][0], second[0][1] + 1))):
             total += 1
-        elif set(range(second[0][0], second[0][1] + 1)).issubset(set(range(first[0][0], first[0][1] + 1))): 
+        elif set(range(second[0][0], second[0][1] + 1)).issubset(set(range(first[0][0], first[0][1] + 1))):
             total += 1
-    
+
     print(f"Your total for puzzle one: {total}")
 
 
@@ -25,7 +25,7 @@ def two(data):
         second = int_elf_assignments(1, pair)
         if len(set(range(first[0][0], first[0][1] + 1)).intersection(set(range(second[0][0], second[0][1] + 1)))) > 0:
             total += 1
-    
+
     print(f"Your total for puzzle two: {total}")
 
 

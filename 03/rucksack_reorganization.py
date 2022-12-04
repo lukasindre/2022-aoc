@@ -23,8 +23,8 @@ def two(data):
     even_chunks = len(data) / 3
     for group in np.array_split(data, even_chunks):
         total += values.index(list(set(str(group[0]))\
-                .intersection(set(str(group[1]))\
-                .intersection(set(str(group[2])))))[0])
+            .intersection(set(str(group[1]))\
+            .intersection(set(str(group[2])))))[0])
     print(f"Your total for puzzle two: {total}")
 
 
