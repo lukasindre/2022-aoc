@@ -10,8 +10,8 @@ def main():
 
 def one(data):
     pattern = re.compile("[0-9]+")
-    start = parse_start()
-    for instruction in data[10:]:
+    start, instructions = parse_start()
+    for instruction in instructions:
         nums = pattern.findall(instruction)
         amount = int(nums[0])
         source = int(nums[1])
@@ -30,8 +30,8 @@ def one(data):
 
 def two(data):
     pattern = re.compile("[0-9]+")
-    start = parse_start()
-    for instruction in data[10:]:
+    start, instructions = parse_start()
+    for instruction in instructions:
         nums = pattern.findall(instruction)
         amount = int(nums[0])
         source = int(nums[1])
@@ -52,6 +52,7 @@ def parse_start():
         data = f.read()
     numbers = data.split("\n\n")[0].split("\n")[-1]
     labels = data.split("\n\n")[0].split("\n")[:-1]
+    instructions = data.split("\n\n")[1].split("\n")
     num_cols = {}
     start_crates = {}
     for i in range(len(numbers)):
@@ -65,7 +66,7 @@ def parse_start():
             start_crates[num_cols[match.start()]].append(match.group())
     for k in start_crates:
         start_crates[k].reverse()
-    return start_crates
+    return start_crates, instructions
 
 
 if __name__ == "__main__":
