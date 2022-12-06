@@ -10,17 +10,7 @@ def main():
 
 def one(data):
     pattern = re.compile("[0-9]+")
-    start = {
-        1: ["Z", "J", "G"],
-        2: ["Q", "L", "R", "P", "W", "F", "V", "C"],
-        3: ["F", "P", "M", "C", "L", "G", "R"],
-        4: ["L", "F", "B", "W", "P", "H", "M"],
-        5: ["G", "C", "F", "S", "V", "Q"],
-        6: ["W", "H", "J", "Z", "M", "Q", "T", "L"],
-        7: ["H", "F", "S", "B", "V"],
-        8: ["F", "J", "Z", "S"],
-        9: ["M", "C", "D", "P", "F", "H", "B", "T"],
-    }
+    start = parse_start()
     for instruction in data[10:]:
         nums = pattern.findall(instruction)
         amount = int(nums[0])
@@ -40,17 +30,7 @@ def one(data):
 
 def two(data):
     pattern = re.compile("[0-9]+")
-    start = {
-        1: ["Z", "J", "G"],
-        2: ["Q", "L", "R", "P", "W", "F", "V", "C"],
-        3: ["F", "P", "M", "C", "L", "G", "R"],
-        4: ["L", "F", "B", "W", "P", "H", "M"],
-        5: ["G", "C", "F", "S", "V", "Q"],
-        6: ["W", "H", "J", "Z", "M", "Q", "T", "L"],
-        7: ["H", "F", "S", "B", "V"],
-        8: ["F", "J", "Z", "S"],
-        9: ["M", "C", "D", "P", "F", "H", "B", "T"],
-    }
+    start = parse_start()
     for instruction in data[10:]:
         nums = pattern.findall(instruction)
         amount = int(nums[0])
@@ -65,6 +45,27 @@ def two(data):
         letters += start[stack][-1]
 
     print(f"Your answer for puzzle two: {letters}")
+
+
+def parse_start():
+    with open("5.in") as f:
+        data = f.read()
+    numbers = data.split("\n\n")[0].split("\n")[-1]
+    labels = data.split("\n\n")[0].split("\n")[:-1]
+    num_cols = {}
+    start_crates = {}
+    for i in range(len(numbers)):
+        if numbers[i] != " ":
+            num_cols[i] = int(numbers[i])
+    for i in range(1, len(num_cols) + 1):
+        start_crates[i] = []
+    pattern = re.compile("[A-Z]")
+    for row in labels:
+        for match in pattern.finditer(row):
+            start_crates[num_cols[match.start()]].append(match.group())
+    for k in start_crates:
+        start_crates[k].reverse()
+    return start_crates
 
 
 if __name__ == "__main__":
