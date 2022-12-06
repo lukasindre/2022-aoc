@@ -1,21 +1,14 @@
 def main():
     with open("6.in") as f:
         data = f.read().strip()
-    one(data)
-    two(data)
+    find_starter(data, 4, "one")
+    find_starter(data, 14, "two")
 
 
-def one(data):
-    for char in range(len(data) - 4):
-        if len(set(data[char : (char + 4)])) == 4:
-            print(f"Your packet starter for puzzle one is: {char + 4}")
-            break
-
-
-def two(data):
-    for char in range(len(data) - 14):
-        if len(set(data[char : (char + 14)])) == 14:
-            print(f"Your packet starter for puzzle two is: {char + 14}")
+def find_starter(data, char_num, puzzle):
+    for char in range(len(data) - char_num):
+        if len(set(data[char : (char + char_num)])) == char_num:
+            print(f"Your packet starter for puzzle {puzzle} is: {char + char_num}")
             break
 
 
