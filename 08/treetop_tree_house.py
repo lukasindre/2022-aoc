@@ -12,7 +12,7 @@ def one(data):
                 tree_size=int(data[i][j]),
                 tree_column_number=j,
                 tree_row_number=i,
-                data=data
+                data=data,
             )
             tree.check_column()
             tree.check_row()
@@ -28,18 +28,20 @@ class Tree:
         self.data = data
         self.visibility = 0
         self.tree_row_number = tree_row_number
-    
+
     def check_row(self):
         row_ints = [int(x) for x in self.data[self.tree_row_number]]
-        if self.tree_column_number == 0 or self.tree_column_number == len(self.data[self.tree_row_number]) - 1:
+        if (
+            self.tree_column_number == 0
+            or self.tree_column_number == len(self.data[self.tree_row_number]) - 1
+        ):
             self.visibility += 1
         else:
-            left_row = row_ints[:self.tree_column_number]
-            right_row = row_ints[self.tree_column_number + 1:]
+            left_row = row_ints[: self.tree_column_number]
+            right_row = row_ints[self.tree_column_number + 1 :]
             if self.tree_size > max(left_row) or self.tree_size > max(right_row):
                 self.visibility += 1
 
-    
     def check_column(self):
         columns_ints = []
         for row in self.data:
@@ -47,9 +49,11 @@ class Tree:
         if self.tree_row_number == 0 or self.tree_row_number == len(self.data) - 1:
             self.visibility += 1
         else:
-            top_column = columns_ints[:self.tree_row_number]
-            bottom_column = columns_ints[self.tree_row_number + 1:]
-            if int(self.tree_size) > int(max(top_column)) or int(self.tree_size) > int(max(bottom_column)):
+            top_column = columns_ints[: self.tree_row_number]
+            bottom_column = columns_ints[self.tree_row_number + 1 :]
+            if int(self.tree_size) > int(max(top_column)) or int(self.tree_size) > int(
+                max(bottom_column)
+            ):
                 self.visibility += 1
 
 

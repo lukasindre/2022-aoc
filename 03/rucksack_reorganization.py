@@ -22,15 +22,19 @@ def two(data):
     total = 0
     even_chunks = len(data) / 3
     for group in np.array_split(data, even_chunks):
-        total += values.index(list(set(str(group[0]))\
-            .intersection(set(str(group[1]))\
-            .intersection(set(str(group[2])))))[0])
+        total += values.index(
+            list(
+                set(str(group[0])).intersection(
+                    set(str(group[1])).intersection(set(str(group[2])))
+                )
+            )[0]
+        )
     print(f"Your total for puzzle two: {total}")
 
 
 def split_string(a_string):
-    first_half = a_string[:(int(len(a_string)/2))]
-    second_half = a_string[(int(len(a_string)/2)):]
+    first_half = a_string[: (int(len(a_string) / 2))]
+    second_half = a_string[(int(len(a_string) / 2)) :]
     return first_half, second_half
 
 

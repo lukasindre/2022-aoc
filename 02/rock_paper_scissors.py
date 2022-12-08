@@ -8,24 +8,32 @@ def main():
 
 def one():
     total_score = 0
-    data = [x.strip().split(' ') for x in fileinput.input()]
+    data = [x.strip().split(" ") for x in fileinput.input()]
     for round in data:
         opponent = round[0]
         you = round[1]
         score = scores()[you]
-        if (opponent == "A" and you == "Y") or (opponent == "B" and you == "Z") or (opponent == "C" and you == "X"):
+        if (
+            (opponent == "A" and you == "Y")
+            or (opponent == "B" and you == "Z")
+            or (opponent == "C" and you == "X")
+        ):
             score += 6
-        elif (opponent == "A" and you == "X") or (opponent == "B" and you == "Y") or (opponent == "C" and you == "Z"):
+        elif (
+            (opponent == "A" and you == "X")
+            or (opponent == "B" and you == "Y")
+            or (opponent == "C" and you == "Z")
+        ):
             score += 3
 
         total_score += score
-    
+
     print(f"Your total score for puzzle one: {total_score}")
 
 
 def two():
     total_score = 0
-    data = [x.strip().split(' ') for x in fileinput.input()]
+    data = [x.strip().split(" ") for x in fileinput.input()]
     for round in data:
         opponent = round[0]
         outcome = round[1]
@@ -54,16 +62,12 @@ def two():
             elif opponent == "C":
                 score += 1
         total_score += score
-    
+
     print(f"Your total score for puzzle two: {total_score}")
 
 
 def scores():
-    return {
-        "X": 1,
-        "Y": 2,
-        "Z": 3
-    }
+    return {"X": 1, "Y": 2, "Z": 3}
 
 
 if __name__ == "__main__":

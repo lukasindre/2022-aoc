@@ -15,7 +15,7 @@ def one(data):
     for list in res:
         calories = 0
         for item in list:
-            if item == '':
+            if item == "":
                 continue
             else:
                 calories += int(item)
@@ -30,12 +30,12 @@ def two(data):
     for list in res:
         calories = 0
         for item in list:
-            if item == '':
+            if item == "":
                 continue
             else:
                 calories += int(item)
         totals.append(calories)
-    
+
     final = []
     for i in range(0, 3):
         max1 = 0
@@ -44,18 +44,20 @@ def two(data):
                 max1 = totals[j]
         totals.remove(max1)
         final.append(max1)
-    
+
     print(f"The top three calorie amounts add up to {sum(final)}")
 
 
-def split_list(data, char=''):
+def split_list(data, char=""):
     size = len(data)
-    idx_list = [idx + 1 for idx, val in
-            enumerate(data) if val == '']
-  
-    res = [data[i: j] for i, j in
-            zip([0] + idx_list, idx_list + 
-            ([size] if idx_list[-1] != size else []))]
+    idx_list = [idx + 1 for idx, val in enumerate(data) if val == ""]
+
+    res = [
+        data[i:j]
+        for i, j in zip(
+            [0] + idx_list, idx_list + ([size] if idx_list[-1] != size else [])
+        )
+    ]
 
     return res
 
